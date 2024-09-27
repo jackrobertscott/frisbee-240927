@@ -9,11 +9,13 @@
     "b:dev": "vite dev",
     "b:build": "vite build",
     "b:start": "vite preview",
-    "s:dev": "bun --watch src/srv.ts",
-    "s:start": "bun run src/srv.ts",
+    "s:dev": "bun --watch src/server.ts",
+    "s:start": "bun run src/server.ts",
     "t:e2e": "playwright test"
   },
   "dependencies": {
+    "@paralleldrive/cuid2": "^2.2.2",
+    "postgres": "^3.4.4",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "zod": "^3.23.8"
@@ -23,6 +25,7 @@
     "@types/react": "^18.3.9",
     "@types/react-dom": "^18.3.0",
     "@vitejs/plugin-react": "^4.3.1",
+    "bun-types": "^1.1.29",
     "typescript": "^5.6.2",
     "vite": "^5.4.8"
   }
