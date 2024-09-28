@@ -1,14 +1,7 @@
 import {createId} from "@paralleldrive/cuid2"
-import postgres from "postgres"
 import {z} from "zod"
 import {newAct} from "./db/newAct"
-
-const sql = postgres({
-  database: "frisbee_v1",
-  hostname: "localhost",
-  username: "jack",
-  port: 5432,
-})
+import {sql} from "./db/sql_setup"
 
 const createUserAct = newAct({
   in: z.object({
@@ -19,7 +12,7 @@ const createUserAct = newAct({
     id: z.string(),
   }),
   do: async (data) => {
-    const [user] = await sql<[{id: string}]>`
+    const [user] = await sql`
         INSERT INTO users ${sql({
           id: createId(),
           email: data.email,
@@ -87,7 +80,5 @@ async function main() {
 }
 
 await main()
-
 console.log("done")
-
-process.exit()
+process.exit() // some reason bun does not exit on its own
